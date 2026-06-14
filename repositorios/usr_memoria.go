@@ -9,6 +9,13 @@ type UsuarioMemoria struct {
 	usuarios []*modelos.Usuario
 }
 
+// instancia del repositorio de usuarios en memoria
+func NewUsrMemoria() *UsuarioMemoria {
+	return &UsuarioMemoria{
+		usuarios: []*modelos.Usuario{},
+	}
+}
+
 // guardar un nuevo usuario en memoria
 func (repo *UsuarioMemoria) Guardar(usuario *modelos.Usuario) error {
 	for _, u := range repo.usuarios {

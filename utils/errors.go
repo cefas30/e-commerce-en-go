@@ -8,3 +8,6 @@ var (
 var (
 	ErrorProductoSinStock = errors.New("producto sin stock")
 )
+var (
+	ErrCantidadInvalida = errors.New("cantidad inválida")
+)
