@@ -44,3 +44,12 @@ func (c *Carrito) EliminarProducto(idProducto int) {
 		}
 	}
 }
+
+// calcular el total del carrito sumando el precio de cada producto multiplicado por su cantidad.
+func (c Carrito) CalcularTotal(items []ItemCarrito) float64 {
+	total := 0.0
+	for _, item := range items {
+		total += item.Producto.GetPrecio() * float64(item.Cantidad)
+	}
+	return total
+}

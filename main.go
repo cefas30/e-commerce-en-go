@@ -3,6 +3,7 @@ package main
 import (
 	"ecommerce/modelos"
 	"ecommerce/repositorios"
+	"ecommerce/servicios"
 	"fmt"
 )
 
@@ -51,5 +52,25 @@ func main() {
 	for _, u := range usuarios {
 		fmt.Printf("ID: %d, Nombre: %s, Email: %s\n", u.GetID(), u.GetNombre(), u.GetEmail())
 	}
+
+	pedidoRepo := repositorios.NewPedMemoria()
+	carrito := modelos.NuevoCarrito(cliente.GetID())
+	carrito.AgregarProducto(producto, 1)
+	pedido, err := servicios.CrearPedido(1, cliente, carrito)
+	if err != nil {
+		fmt.Println("Error al crear el pedido:", err)
+		return
+	}
+	err = servicios.ActualizarInventario(carrito.GetItems())
+	if err != nil {
+		fmt.Println("Error al actualizar el inventario:", err)
+		return
+	}
+	err = pedidoRepo.Guardar(pedido)
+	if err != nil {
+		fmt.Println("Error al guardar el pedido:", err)
+		return
+	}
+	fmt.Printf("Pedido creado: ID: %d, Cliente: %s, Producto: %s, Cantidad: %d\n", pedido.GetID(), pedido.GetUsuario().GetNombre(), pedido.GetProducto().GetNombre(), pedido.GetCantidad())
 
 }
