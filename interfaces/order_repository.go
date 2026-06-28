@@ -1,6 +1,6 @@
 package interfaces
 
-import "ecommerce/modelos"
+import modelos "ecommerce/models"
 
 // PedidoRepository define el contrato para persistir pedidos.
 type PedidoRepository interface {

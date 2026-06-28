@@ -1,0 +1,23 @@
+# Binarios
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Carpeta compilada
+bin/
+
+# Variables de entorno
+.env
+
+# Logs
+logs/
+*.log
+
+# Visual Studio Code
+.vscode/
+
+# Archivos temporales
+*.tmp
+*.swp
